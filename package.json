@@ -8,7 +8,7 @@
     "serve": "webpack --progress --colors --watch --env dev",
     "test": "mocha --recursive --require ts-node/register --colors ./**/*.spec.ts",
     "test:watch": "mocha --recursive --require ts-node/register --colors -w ./**/*.spec.ts",
-    "docgen": "typedoc --out docs --target es6 --theme minimal --mode file src --exclude \"**/*.spec.ts\" --excludeNotExported",
+    "docgen": "typedoc --out dist/docs --target es6 --theme minimal --mode file src --exclude \"**/*.spec.ts\" --excludeNotExported",
     "deploy-doc": "ts-node tools/gh-pages-publish"
   },
   "repository": {

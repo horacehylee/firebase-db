@@ -8,6 +8,10 @@ Firebase database CRUD helper
 npm install --save firebase-db
 ```
 
+## Documentation
+
+https://github.com/horacehylee/firebase-db
+
 ## License
 
 MIT © [Horace Lee](https://github.com/horacehylee)
