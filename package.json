@@ -8,8 +8,8 @@
     "serve": "webpack --progress --colors --watch --env dev",
     "test": "mocha --recursive --require ts-node/register --colors ./**/*.spec.ts",
     "test:watch": "mocha --recursive --require ts-node/register --colors -w ./**/*.spec.ts",
-    "docgen": "typedoc --out dist/docs --target es6 --theme minimal --mode file src --exclude \"**/*.spec.ts\" --excludeNotExported",
-    "deploy-doc": "ts-node tools/gh-pages-publish"
+    "doc:gen": "typedoc --out dist/docs --target es6 --theme minimal --mode file src --exclude \"**/*.spec.ts\" --excludeNotExported",
+    "doc:deploy": "ts-node tools/gh-pages-publish"
   },
   "repository": {
     "type": "git",
@@ -58,6 +58,7 @@
     "chai-as-promised": "7.1.1",
     "chai-shallow-deep-equal": "1.4.6",
     "chai-string": "1.4.0",
+    "coveralls": "3.0.0",
     "dotenv": "4.0.0",
     "fork-ts-checker-webpack-plugin": "0.2.10",
     "json-loader": "0.5.7",
