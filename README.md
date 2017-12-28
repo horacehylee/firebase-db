@@ -10,7 +10,7 @@ npm install --save firebase-db
 
 ## Documentation
 
-https://github.com/horacehylee/firebase-db
+https://horacehylee.github.io/firebase-db/
 
 ## License
 
