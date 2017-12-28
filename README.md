@@ -5,7 +5,7 @@ Firebase database CRUD helper
 ## Installation
 
 ```
-npm install --save firebase-db
+npm install --save @horacehylee/firebase-db
 ```
 
 ## Documentation
