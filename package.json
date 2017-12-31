@@ -33,10 +33,10 @@
   "author": "Horace Lee",
   "license": "MIT",
   "dependencies": {
-    "date-fns": "1.29.0",
-    "firebase-admin": "5.2.1",
-    "lodash": "4.17.4",
-    "path": "0.12.7"
+    "date-fns": "^1.29.0",
+    "firebase-admin": "^5.2.1",
+    "lodash": "^4.17.4",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@types/chai": "4.0.4",
