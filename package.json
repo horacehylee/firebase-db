@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Firebase database CRUD helper",
   "main": "lib/firebase-db.js",
+  "files": [
+    "lib"
+  ],
+  "types": "lib/types/index.d.ts",
   "scripts": {
     "build": "webpack --env dev && webpack --env build",
     "serve": "webpack --progress --colors --watch --env dev",
@@ -28,9 +32,6 @@
   ],
   "author": "Horace Lee",
   "license": "MIT",
-  "files": [
-    "lib"
-  ],
   "dependencies": {
     "date-fns": "1.29.0",
     "firebase-admin": "5.2.1",
