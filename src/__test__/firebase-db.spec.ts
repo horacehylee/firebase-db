@@ -3,7 +3,7 @@ import { FirebaseDb } from "../firebase-db";
 import "mocha";
 import { assert, expect, should } from "chai";
 import * as sinon from "sinon";
-import { database, initializeApp, apps, credential } from "firebase-admin";
+import * as admin from "firebase-admin";
 import * as path from "path";
 import * as randomString from "randomstring";
 
@@ -28,7 +28,7 @@ describe("FirebaseDb", () => {
 
   const testRef = "ref";
   const fetchFromDatabase = (id: string): Promise<any> => {
-    const db = database();
+    const db = admin.database();
     const refValue = path.posix.join(testRefPrefix, testRef, id);
     return db
       .ref(refValue)
@@ -38,7 +38,7 @@ describe("FirebaseDb", () => {
       });
   };
   const fetchRefFromDatabase = (): Promise<any> => {
-    const db = database();
+    const db = admin.database();
     const ref = path.posix.join(testRefPrefix, testRef);
     return db
       .ref(ref)
@@ -48,19 +48,20 @@ describe("FirebaseDb", () => {
       });
   };
   const clearDb = async () => {
-    const db = database();
+    const db = admin.database();
     await db.ref(testRefPrefix).remove();
   };
 
   before(() => {
     const serviceAccount = require("./../../secrets/firebase-adminsdk.json");
-    initializeApp(
+    admin.initializeApp(
       {
-        credential: credential.cert(serviceAccount),
+        credential: admin.credential.cert(serviceAccount),
         databaseURL: process.env.FIREBASE_DATABASE_URL
       },
-      !isEmpty(apps) ? randomString.generate() : undefined
+      !isEmpty(admin.apps) ? randomString.generate() : undefined
     );
+    FirebaseDb.connect(admin.database());
     console.log(`Database Url: ${process.env.FIREBASE_DATABASE_URL}`);
   });
 
@@ -181,7 +182,7 @@ describe("FirebaseDb", () => {
 
     describe("Already populated with data", () => {
       before(() => {
-        const db = database();
+        const db = admin.database();
         const ref = path.posix.join(testRefPrefix, testRef);
         db.ref(ref).set({
           testId1: {
@@ -243,7 +244,7 @@ describe("FirebaseDb", () => {
   describe("Get All", () => {
     describe("Already populated with data", () => {
       before(() => {
-        const db = database();
+        const db = admin.database();
         const ref = path.posix.join(testRefPrefix, testRef);
         db.ref(ref).set({
           testId1: {
@@ -288,7 +289,7 @@ describe("FirebaseDb", () => {
   describe("Update", () => {
     describe("Already populated with data", () => {
       before(() => {
-        const db = database();
+        const db = admin.database();
         const ref = path.posix.join(testRefPrefix, testRef);
         db.ref(ref).set({
           testId1: {
@@ -348,7 +349,7 @@ describe("FirebaseDb", () => {
   describe("Delete with id", () => {
     describe("Already populated with data", () => {
       beforeEach(() => {
-        const db = database();
+        const db = admin.database();
         const ref = path.posix.join(testRefPrefix, testRef);
         db.ref(ref).set({
           testId1: {
@@ -388,7 +389,7 @@ describe("FirebaseDb", () => {
   describe("Delete All", () => {
     describe("Already populated with data", () => {
       before(() => {
-        const db = database();
+        const db = admin.database();
         const ref = path.posix.join(testRefPrefix, testRef);
         db.ref(ref).set({
           testId1: {
@@ -416,7 +417,7 @@ describe("FirebaseDb", () => {
 
   describe("Exists", () => {
     before(() => {
-      const db = database();
+      const db = admin.database();
       const ref = path.posix.join(testRefPrefix, testRef);
       db.ref(ref).set({
         testId1: {

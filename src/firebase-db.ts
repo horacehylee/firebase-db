@@ -24,11 +24,12 @@ export class FirebaseDb {
   }
 
   private static getDb() {
-    if (_database) {
-      return _database;
-    } else {
-      return database();
+    if (!_database) {
+      throw new Error(
+        "Firebase-db database is not connected, please call FirebaseDb.connect(admin.database()) first"
+      );
     }
+    return _database;
   }
 
   static insert(pathValue: string, data: any): Promise<string> {
