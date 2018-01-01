@@ -34,9 +34,11 @@
   "license": "MIT",
   "dependencies": {
     "date-fns": "1.29.0",
-    "firebase-admin": "5.2.1",
     "lodash": "4.17.4",
     "path": "0.12.7"
+  },
+  "peerDependencies": {
+    "firebase-admin": ">=5.2.1 <6.0.0"
   },
   "devDependencies": {
     "@types/chai": "4.0.4",
@@ -61,6 +63,7 @@
     "chai-string": "1.4.0",
     "coveralls": "3.0.0",
     "dotenv": "4.0.0",
+    "firebase-admin": "5.2.1",
     "fork-ts-checker-webpack-plugin": "0.2.10",
     "json-loader": "0.5.7",
     "mocha": "3.5.3",
