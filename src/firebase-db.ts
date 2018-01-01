@@ -154,6 +154,20 @@ export class FirebaseDb {
     });
   }
 
+  static set(pathValue: string, data: any): Promise<void> {
+    notNull(pathValue, "pathValue");
+    notNull(data, "data");
+
+    pathValue = hookPathValue(pathValue);
+
+    const db = this.getDb();
+    const ref = db.ref(pathValue);
+    const item = {
+      ..._serialize(data)
+    };
+    return ref.set(item);
+  }
+
   static updateFields(
     pathValue: string,
     id: string,
