@@ -2,11 +2,11 @@ import { FirebaseDbParser } from "./fns/firebase-db-parser";
 import { FirebaseDbSerializer } from "./fns/firebase-db-serializer";
 import { notNull } from "./fns/firebase-db-util";
 
-import * as admin from "firebase-admin";
+import { database } from "firebase-admin";
 import * as path from "path";
 
 const _serialize = data => FirebaseDbSerializer.serialize(data);
-const _parseSnapshot = (snapshot: admin.database.DataSnapshot) =>
+const _parseSnapshot = (snapshot: database.DataSnapshot) =>
   FirebaseDbParser.parse(snapshot.val());
 
 // Testing hook
@@ -16,10 +16,10 @@ const hookPathValue = (pathValue: string): string => {
   return path.posix.join(testRef, pathValue);
 };
 
-let _database: admin.database.Database;
+let _database: database.Database;
 
 export class FirebaseDb {
-  public static connect(database: admin.database.Database) {
+  public static connect(database: database.Database) {
     _database = database;
   }
 
@@ -27,7 +27,7 @@ export class FirebaseDb {
     if (_database) {
       return _database;
     } else {
-      return admin.database();
+      return database();
     }
   }
 
@@ -105,7 +105,7 @@ export class FirebaseDb {
     pathValue = path.posix.join(pathValue, id);
     const db = this.getDb();
     const ref = db.ref(pathValue);
-    return ref.once("value").then((snapshot: admin.database.DataSnapshot) => {
+    return ref.once("value").then((snapshot: database.DataSnapshot) => {
       if (!snapshot.val()) {
         // throw new ReferenceError(`unknown id(${id}) for ref(${pathValue})`)
         // return Promise.reject(`unknown id(${id}) for ref(${pathValue})`);
@@ -124,7 +124,7 @@ export class FirebaseDb {
 
     const db = this.getDb();
     const ref = db.ref(pathValue);
-    return ref.once("value").then((snapshot: admin.database.DataSnapshot) => {
+    return ref.once("value").then((snapshot: database.DataSnapshot) => {
       const results = [];
       snapshot.forEach(childSnapshot => {
         results.push(_parseSnapshot(childSnapshot));
