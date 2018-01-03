@@ -11,7 +11,7 @@ const _parseSnapshot = (snapshot: database.DataSnapshot) =>
 
 // Testing hook
 const testRef = "/__test__";
-const hookPathValue = (pathValue: string): string => {
+export const hookPathValue = (pathValue: string): string => {
   if (process.env.NODE_ENV != "test") return pathValue;
   return path.posix.join(testRef, pathValue);
 };
