@@ -1,6 +1,6 @@
 {
   "name": "@horacehylee/firebase-db",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Firebase database CRUD helper",
   "main": "lib/firebase-db.js",
   "files": [
