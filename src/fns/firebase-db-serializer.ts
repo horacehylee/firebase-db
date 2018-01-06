@@ -1,10 +1,11 @@
-import { convertDeepObjectOfType } from "./firebase-db-util";
+import { convertDeepObjectOfType, removeEmptyProp } from "./firebase-db-util";
 
 export class FirebaseDbSerializer {
-    static serialize(input: any): any {
-        return convertDeepObjectOfType<Date>(input, Date)((date) => ({
-            value: date.getTime(),
-            type: 'date',
-        }))
-    }
+  static serialize(input: any): any {
+    const removedEmpty = removeEmptyProp(input);
+    return convertDeepObjectOfType<Date>(removedEmpty, Date)(date => ({
+      value: date.getTime(),
+      type: "date"
+    }));
+  }
 }
